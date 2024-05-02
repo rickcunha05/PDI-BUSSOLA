@@ -1,0 +1,91 @@
+body {
+  background-color: #FF644A;
+  color: #AA1A28;
+  font-family: "Pokemon Solid";
+}
+
+main {
+  padding: 40px;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.gameboard {
+  width: 445px;
+  height: 465px;
+  border: 3px dashed;
+  border-radius: 5%;
+}
+
+.gameboard-title {
+  font-weight: bolder;
+  position: relative;
+  line-height: 40px;
+  font-size: 30px;
+  margin-left: 20px;
+  top: -10px;
+  color: white;
+  text-shadow: 1px 1px 2px black;
+}
+
+.pokemon-toe {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-top: 20px;
+}
+.pokemon-toe .row {
+  display: flex;
+}
+.pokemon-toe .row .celula {
+  width: 125px;
+  height: 125px;
+  display: flex;
+  position: relative;
+  align-items: center;
+  justify-content: center;
+}
+.pokemon-toe .row .celula:last-child::after {
+  content: none;
+}
+.pokemon-toe .row .celula:last-child::before {
+  border-top-right-radius: 10px;
+  border-bottom-right-radius: 10px;
+}
+.pokemon-toe .row .celula:first-child::before {
+  border-top-left-radius: 10px;
+  border-bottom-left-radius: 10px;
+}
+.pokemon-toe .row .celula::after {
+  content: "";
+  background-color: #AA1A28;
+  width: 8px;
+  height: 125px;
+  display: block;
+  position: absolute;
+  right: 0px;
+}
+.pokemon-toe .row .celula::before {
+  content: "";
+  background-color: #AA1A28;
+  height: 8px;
+  width: 125px;
+  display: block;
+  position: absolute;
+  bottom: 0px;
+}
+.pokemon-toe .row:first-child .celula::after {
+  border-radius: 10px;
+}
+.pokemon-toe .row:last-child .celula::after {
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
+}
+.pokemon-toe .row:last-child .celula::before {
+  content: none;
+}
+
+/*# sourceMappingURL=styles.css.map */
