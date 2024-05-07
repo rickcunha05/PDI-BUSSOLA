@@ -1,76 +1,139 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Formulário de Cadastro</title>
-  <style>
-    .error {
-      color: red;
-    }
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Formulário de Registro com Validação jQuery</title>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<style>
+.error {
+    border-color: red;
+}
+</style>
 </head>
 <body>
 
-  <h2>Formulário de Cadastro</h2>
+<div class="section">
+    <div class="container">
+        <div class="row full-height justify-content-center">
+            <div class="col-12 text-center align-self-center py-5">
+                <div class="section pb-5 pt-5 pt-sm-2 text-center">
+                    <h6 class="mb-0 pb-3"><span>Log In </span><span>Sign Up</span></h6>
+                    <input class="checkbox" type="checkbox" id="reg-log" name="reg-log"/>
+                    <label for="reg-log"></label>
+                    <div class="card-3d-wrap mx-auto">
+                        <div class="card-3d-wrapper">
+                            <div class="card-front">
+                                <div class="center-wrap">
+                                    <div class="section text-center">
+                                        <h4 class="pb-3">Log In</h4>
+                                        <div class="form-group">
+                                            <input type="email" class="form-style" placeholder="Email">
+                                            <i class="input-icon uil uil-at"></i>
+                                        </div>    
+                                        <div class="form-group mt-2">
+                                            <input type="password" class="form-style" placeholder="Password">
+                                            <i class="input-icon uil uil-lock-alt"></i>
+                                        </div>
+                                        <button class="btn mt-4 login-btn">Login</button>
+                                        <div class="form-group mt-2">
+                                            <p>Or</p>
+                                            <a href="#" class="btn"><i class="fa-brands fa-facebook-f"></i></a>
+                                            <a href="#" class="btn"><i class="fa-brands fa-google"></i></a>
+                                            <a href="#" class="btn"><i class="fa-brands fa-github"></i></a>
+                                        </div>
+                                        <p class="mb-0 mt-4 text-center"><a href="#" class="link">Forgot your password?</a></p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card-back">
+                                <div class="center-wrap">
+                                    <div class="section text-center">
+                                        <h4 class="mb-3 pb-3">Sign Up</h4>
+                                        <div class="form-group">
+                                            <input type="text" class="form-style" placeholder="Full Name">
+                                            <i class="input-icon uil uil-user"></i>
+                                        </div>    
+                                        <div class="form-group mt-2">
+                                            <input type="tel" class="form-style" placeholder="Phone Number">
+                                            <i class="input-icon uil uil-phone"></i>
+                                        </div>    
+                                        <div class="form-group mt-2">
+                                            <input type="email" class="form-style" placeholder="Email">
+                                            <i class="input-icon uil uil-at"></i>
+                                        </div>
+                                        <div class="form-group mt-2">
+                                            <input type="password" class="form-style" placeholder="Password">
+                                            <i class="input-icon uil uil-lock-alt"></i>
+                                        </div>
+                                        <button class="btn mt-4 register-btn">Register</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 
-  <form id="cadastroForm">
-    <div>
-      <label for="nome">Nome:</label>
-      <input type="text" id="nome" name="nome" required>
-    </div>
-    <div>
-      <label for="sobrenome">Sobrenome:</label>
-      <input type="text" id="sobrenome" name="sobrenome" required>
-    </div>
-    <div>
-      <label for="email">Email:</label>
-      <input type="email" id="email" name="email" required>
-    </div>
-    <div>
-      <label for="genero">Gênero:</label>
-      <select id="genero" name="genero" required>
-        <option value="">Selecione...</option>
-        <option value="masculino">Masculino</option>
-        <option value="feminino">Feminino</option>
-        <option value="outro">Outro</option>
-      </select>
-    </div>
-    <div>
-      <label for="idade">Idade:</label>
-      <input type="number" id="idade" name="idade" required>
-    </div>
-    <div>
-      <button type="submit">Enviar</button>
-    </div>
-  </form>
+<script>
+$(document).ready(function() {
+    $(".login-btn").click(function() {
+        var email = $(".card-front input[type='email']").val();
+        var password = $(".card-front input[type='password']").val();
 
-  <div id="mensagemErro" class="error" style="display: none;"></div>
-
-  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-  <script>
-    $(document).ready(function() {
-      $('#cadastroForm').submit(function(event) {
-        event.preventDefault();
-        var nome = $('#nome').val();
-        var sobrenome = $('#sobrenome').val();
-        var email = $('#email').val();
-        var genero = $('#genero').val();
-        var idade = $('#idade').val();
-
-        if (nome === '' || sobrenome === '' || email === '' || genero === '' || idade === '') {
-          $('#mensagemErro').text('Todos os campos são obrigatórios').show();
-          $('input, select').addClass('error');
+        // Verifica se os campos estão vazios
+        if (email == "") {
+            $(".card-front input[type='email']").addClass("error");
+            return false;
         } else {
-          $('#mensagemErro').hide();
-          $('input, select').removeClass('error');
-          // Aqui você pode enviar os dados do formulário para o backend ou fazer o que for necessário com eles
-          console.log('Dados do formulário:', { nome, sobrenome, email, genero, idade });
-          // Por exemplo, você pode fazer uma requisição AJAX para enviar os dados para o servidor
+            $(".card-front input[type='email']").removeClass("error");
         }
-      });
+
+        if (password == "") {
+            $(".card-front input[type='password']").addClass("error");
+            return false;
+        } else {
+            $(".card-front input[type='password']").removeClass("error");
+        }
+
+        // Se todos os campos estiverem preenchidos, envie o formulário
+        // Aqui você pode adicionar a lógica para enviar os dados para o servidor, por exemplo, usando AJAX
+        alert("Login bem-sucedido!");
     });
-  </script>
+
+    $(".register-btn").click(function() {
+        var fullName = $(".card-back input[placeholder='Full Name']").val();
+        var phoneNumber = $(".card-back input[placeholder='Phone Number']").val();
+        var email = $(".card-back input[type='email']").val();
+        var password = $(".card-back input[type='password']").val();
+
+        // Verifica se algum campo está vazio
+        if (fullName == "" || phoneNumber == "" || email == "" || password == "") {
+            // Adiciona borda vermelha aos campos vazios
+            $(".card-back input").each(function() {
+                if ($(this).val() == "") {
+                    $(this).addClass("error");
+                } else {
+                    $(this).removeClass("error");
+                }
+            });
+            return false;
+        }
+
+        // Se todos os campos estiverem preenchidos, envie o formulário
+        // Aqui você pode adicionar a lógica para enviar os dados para o servidor, por exemplo, usando AJAX
+        alert("Registro bem-sucedido!");
+    });
+
+    // Remove a classe de erro ao começar a digitar
+    $("input").keyup(function() {
+        $(this).removeClass("error");
+    });
+});
+</script>
 
 </body>
 </html>
