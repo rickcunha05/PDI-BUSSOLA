@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Formulário de Registro</title>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<link rel="stylesheet" href="styles.css">
+<style>
+.error {
+    color: red;
+}
+</style>
+</head>
+<body>
+
+<div class="container">
+  <div class="title">Registro</div>
+  <form id="registrationForm" action="#" method="post">
+    <div class="user-details">
+        <div class="input-box">
+            <span class="details">Nome completo</span>
+            <input id="fullName" type="text" placeholder="Digite seu nome" required/>
+            <span class="error" id="fullNameError"></span>
+        </div>
+        <div class="input-box">
+            <span class="details">Nome de usuário</span>
+            <input id="username" type="text" placeholder="Digite seu nome de usuário" required/>
+            <span class="error" id="usernameError"></span>
+        </div>
+        <div class="input-box">
+            <span class="details">Email</span>
+            <input id="email" type="email" placeholder="Digite seu Email" required/>
+            <span class="error" id="emailError"></span>
+        </div>
+        <div class="input-box">
+            <span class="details">Número para contato</span>
+            <input id="phoneNumber" type="text" placeholder="Digite seu número" required/>
+            <span class="error" id="phoneNumberError"></span>
+        </div>
+        <div class="input-box">
+            <span class="details">Senha</span>
+            <input id="password" type="password" placeholder="Digite sua senha" required/>
+            <span class="error" id="passwordError"></span>
+        </div>
+        <div class="input-box">
+            <span class="details">Confirme sua senha</span>
+            <input id="confirmPassword" type="password" placeholder="Confirme sua senha" required/>
+            <span class="error" id="confirmPasswordError"></span>
+        </div>        
+    </div>      
+    <div class="button">
+        <button type="button" id="submitButton">Enviar</button>
+    </div>
+</form>
+</div>
+
+<script>
+$(document).ready(function(){
+    $("#submitButton").click(function(){
+        $(".error").text("");
+        
+        // Check se os inputs estão preenchidos
+        var allFieldsFilled = true;
+        if ($("#fullName").val() == "") {
+            $("#fullNameError").text("Campo obrigatório");            
+            allFieldsFilled = false;
+        }
+        if ($("#username").val() == "") {
+            $("#usernameError").text("Campo obrigatório");
+            allFieldsFilled = false;
+        }
+        if ($("#email").val() == "") {
+            $("#emailError").text("Campo obrigatório");
+            allFieldsFilled = false;
+        }
+        if ($("#phoneNumber").val() == "") {
+            $("#phoneNumberError").text("Campo obrigatório");
+            allFieldsFilled = false;
+        }
+        if ($("#password").val() == "") {
+            $("#passwordError").text("Campo obrigatório");
+            allFieldsFilled = false;
+        }
+        if ($("#confirmPassword").val() == "") {
+            $("#confirmPasswordError").text("Campo obrigatório");
+            allFieldsFilled = false;
+        }
+                
+        if (allFieldsFilled) {
+            alert("Dados enviados!");
+            // limpar campos
+            $("#fullName, #username, #email, #phoneNumber, #password, #confirmPassword").val("");
+        } else {
+            // Scroll to the first error message
+            $('html, body').animate({
+                scrollTop: $(".error").first().offset().top
+            }, 1000);
+        }
+    });
+});
+</script>
+
+</body>
+</html>
